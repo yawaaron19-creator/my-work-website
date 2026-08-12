@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple POS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Simple POS System</h2>
+
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="price" placeholder="Price">
+<button onclick="addItem()">Add Item</button>
+
+<table id="itemTable">
+    <tr>
+        <th>Item</th>
+        <th>Price (GHC)</th>
+    </tr>
+</table>
+
+<h3>Total: GHC<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple POS with Receipt</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:20px;
+}
+input,button{
+    padding:8px;
+    margin:5px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+table,th,td{
+    border:1px solid #000;
+}
+th,td{
+    padding:8px;
+    text-align:left;
+}
+#receipt{
+    margin-top:30px;
+    border:2px dashed #000;
+    padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Simple POS System</h2>
+
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="price" placeholder="Price (GH₵)">
+<button onclick="addItem()">Add Item</button>
+<button onclick="generateReceipt()">Generate Receipt</button>
+<button onclick="window.print()">Print Receipt</button>
+
+<table id="itemTable">
+<tr>
+    <th>Item</th>
+    <th>Price (GH₵)</th>
+</tr>
+</table>
+
+<h3>Total: GH₵ <span id="total">0.00</span></h3>
+
+<div id="receipt"></div>
+
+<script>
+let items = [];
+let total = 0;
+
+function addItem(){
+    const item = document.getElementById("item").value;
+    const price = parseFloat(document.getElementById("price").value);
+
+    if(item === "" || isNaN(price)){
+        alert("Enter both item and price.");
+        return;
+    }
+
+    items.push({item, price});
+
+    const table = document.getElementById("itemTable");
+    const row = table.insertRow();
+
+    row.insertCell(0).innerHTML = item;
+    row.insertCell(1).innerHTML = price.toFixed(2);
+
+    total += price;
+    document.getElementById("total").innerHTML = total.toFixed(2);
+
+    document.getElementById("item").value = "";
+    document.getElementById("price").value = "";
+}
+
+function generateReceipt(){
+
+    let receipt = `
+    <h2>RECEIPT</h2>
+    <p>Date: ${new Date().toLocaleString()}</p>
+    <hr>
+    <table style="width:100%;border-collapse:collapse;">
+    <tr>
+        <th align="left">Item</th>
+        <th align="right">Price</th>
+    </tr>`;
+
+    items.forEach(function(i){
+        receipt += `
+        <tr>
+            <td>${i.item}</td>
+            <td align="right">GH₵ ${i.price.toFixed(2)}</td>
+        </tr>`;
+    });
+
+    receipt += `
+    </table>
+    <hr>
+    <h3>Total: GH₵ ${total.toFixed(2)}</h3>
+    <p>Thank you for shopping!</p>`;
+
+    document.getElementById("receipt").innerHTML = receipt;
+}
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simple POS with Receipt</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:20px;
+}
+input,button{
+    padding:8px;
+    margin:5px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+table,th,td{
+    border:1px solid #000;
+}
+th,td{
+    padding:8px;
+    text-align:left;
+}
+#receipt{
+    margin-top:30px;
+    border:2px dashed #000;
+    padding:15px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Simple POS System</h2>
+
+<input type="text" id="item" placeholder="Item Name">
+<input type="number" id="price" placeholder="Price (GH₵)">
+<button onclick="addItem()">Add Item</button>
+<button onclick="generateReceipt()">Generate Receipt</button>
+<button onclick="window.print()">Print Receipt</button>
+
+<table id="itemTable">
+<tr>
+    <th>Item</th>
+    <th>Price (GH₵)</th>
+</tr>
+</table>
+
+<h3>Total: GH₵ <span id="total">0.00</span></h3>
+
+<div id="receipt"></div>
+
+<script>
+let items = [];
+let total = 0;
+
+function addItem(){
+    const item = document.getElementById("item").value;
+    const price = parseFloat(document.getElementById("price").value);
+
+    if(item === "" || isNaN(price)){
+        alert("Enter both item and price.");
+        return;
+    }
+
+    items.push({item, price});
+
+    const table = document.getElementById("itemTable");
+    const row = table.insertRow();
+
+    row.insertCell(0).innerHTML = item;
+    row.insertCell(1).innerHTML = price.toFixed(2);
+
+    total += price;
+    document.getElementById("total").innerHTML = total.toFixed(2);
+
+    document.getElementById("item").value = "";
+    document.getElementById("price").value = "";
+}
+
+function generateReceipt(){
+
+    let receipt = `
+    <h2>RECEIPT</h2>
+    <p>Date: ${new Date().toLocaleString()}</p>
+    <hr>
+    <table style="width:100%;border-collapse:collapse;">
+    <tr>
+        <th align="left">Item</th>
+        <th align="right">Price</th>
+    </tr>`;
+
+    items.forEach(function(i){
+        receipt += `
+        <tr>
+            <td>${i.item}</td>
+            <td align="right">GH₵ ${i.price.toFixed(2)}</td>
+        </tr>`;
+    });
+
+    receipt += `
+    </table>
+    <hr>
+    <h3>Total: GH₵ ${total.toFixed(2)}</h3>
+    <p>Thank you for shopping!</p>`;
+
+    document.getElementById("receipt").innerHTML = receipt;
+}
+</script>
+
+</body>
+</html><span id="total">0.00</span></h3>
+
+<script>
+let total = 0;
+
+function addItem() {
+    let item = document.getElementById("item").value;
+    let price = parseFloat(document.getElementById("price").value);
+
+    if (item === "" || isNaN(price)) {
+        alert("Please enter both item name and price.");
+        return;
+    }
+
+    let table = document.getElementById("itemTable");
+    let row = table.insertRow();
+
+    row.insertCell(0).innerHTML = item;
+    row.insertCell(1).innerHTML = price.toFixed(2);
+
+    total += price;
+    document.getElementById("total").innerHTML = total.toFixed(2);
+
+    document.getElementById("item").value = "";
+    document.getElementById("price").value = "";
+}
+</script>
+
+</body>
+</html> 
